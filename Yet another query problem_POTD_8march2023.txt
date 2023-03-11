@@ -1,0 +1,25 @@
+vector<int> solveQueries(int N, int num, vector<int> &A, vector<vector<int>> &Q) 
+    {
+        /*coded by vimal_priyadarshi_iit_bhu
+       
+       https://www.instagram.com/vimal_priyadarshi_iit_bhu/
+   
+    */
+        unordered_map<int,int> m;
+        vector<int> vk(N,0);
+           for(int i=N-1;i>=0;i--)
+           {m[A[i]]++;vk[i]=m[A[i]];}
+           vector<int> ans;
+           
+           for(int i=0;i<num;i++)
+           {
+               int cnt=0;
+               for(int j=Q[i][0];j<=Q[i][1];j++)
+               {
+                   if(vk[j]==Q[i][2]) cnt++;
+               }
+               ans.push_back(cnt);
+           }
+           
+           return ans;
+    }
