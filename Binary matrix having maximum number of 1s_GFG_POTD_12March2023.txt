@@ -1,0 +1,36 @@
+
+/* follow me on instagram
+https://www.instagram.com/vimal_priyadarshi_iit_bhu/
+*/
+
+ int r(vector<int> & v)
+    {
+        int l=0,r=v.size()-2;
+        while(l<=r)
+        {
+            int mid=l+((r-l)>>1);
+            if(v[mid]==0&&v[mid+1]==1)
+            return mid+1;
+            if(v[mid]==0)  l=mid+1;
+            else r=mid-1;
+        }
+    }
+    vector<int> findMaxRow(vector<vector<int>> mat, int N) 
+    {
+        int ans_index=0,ans=0;
+        for(int i=0;i<mat.size();i++)
+        {
+            if(mat[i][0]==1)
+            return {i,mat[i].size()};
+            if(mat[i].back()==0)
+            continue;
+              int  t=r(mat[i]);
+              if(t!=-1)
+               {
+                   int ones=mat[i].size()-t;
+                   if(ans<ones)
+                   {ans=ones;  ans_index=i;}
+               }
+        }
+        return {ans_index,ans};
+    }
